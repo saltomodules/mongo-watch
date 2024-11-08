@@ -1,4 +1,4 @@
-{Server, Db, ReplSetServers} = require 'mongodb'
+{Server, Db, ReplSet} = require 'mongodb'
 _ = require 'lodash'
 
 module.exports = ({db, host, port, dbOpts, username, password, authdb, replicaSet}, done) ->
@@ -11,7 +11,7 @@ module.exports = ({db, host, port, dbOpts, username, password, authdb, replicaSe
       replSetServers.push new Server(replicaServer.host, replicaServer.port)
       return
 
-    connection = new ReplSetServers(replSetServers)
+    connection = new ReplSet(replSetServers)
   else
     connection = new Server(host, port)
 
